@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Automatización para Clínicas | ClinicAI Growth</title>
+  <meta name="description"
+    content="Duplicamos tus citas confirmadas en 30 días con IA 24/7. Sistema completo para clínicas en España. Agenda tu llamada estratégica hoy." />
+  <meta name="author" content="ClinicAI Growth" />
+  <meta property="og:title" content="ClinicAI Growth | Duplicamos Citas en 30 Días" />
+  <meta property="og:description" content="Sistema de automatización con IA para clínicas médicas en España." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="module" crossorigin src="assets/index-BdhcIAhl.js?v=2"></script>
+  <link rel="stylesheet" crossorigin href="assets/index-D6Q-UeO_.css?v=2">
+  <link rel="stylesheet" href="animations.css?v=2">
+  <script defer src="animations.js?v=2"></script>
+  <script defer src="services-override.js?v=2"></script>
+</head>
+
+<body>
+  <!-- PROFESSIONAL PRELOADER -->
+  <div id="clinic-preloader" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #020813; z-index: 999999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.8s cubic-bezier(0.8, 0, 0.2, 1), transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);">
+    
+    <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+      <!-- Glowing background effect behind video -->
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 250px; background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, rgba(14,165,233,0) 70%); border-radius: 50%; filter: blur(20px); z-index: 0; animation: pulseGlow 3s infinite alternate;"></div>
+      
+      <!-- Video Element -->
+      <video autoplay muted playsinline loop style="width: 280px; position: relative; z-index: 1; mix-blend-mode: screen; filter: drop-shadow(0 0 15px rgba(56,189,248,0.2));">
+        <source src="assets/logovideo-loading.mp4" type="video/mp4">
+      </video>
+
+      <!-- Loading track -->
+      <div style="width: 180px; height: 3px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-top: 30px; position: relative; overflow: hidden; z-index: 1;">
+        <div id="loader-progress" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #0ea5e9, #0284c7); border-radius: 4px; box-shadow: 0 0 10px #38bdf8; transition: width 0.1s ease;"></div>
+      </div>
+      
+      <!-- Loading Text -->
+      <div style="color: #64748b; font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 16px; font-weight: 500; z-index: 1; display:flex; align-items:baseline; gap:2px;">
+        <span id="loader-text">Inicializando IA</span>
+        <span class="dots">...</span>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes pulseGlow {
+        from { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+        to { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+      }
+      .dots {
+        display: inline-block;
+        width: 16px;
+        text-align: left;
+        animation: loadingDots 1.5s infinite steps(4, end);
+        color: #38bdf8;
+      }
+      @keyframes loadingDots {
+        0%, 100% { clip-path: inset(0 100% 0 0); }
+        25% { clip-path: inset(0 66% 0 0); }
+        50% { clip-path: inset(0 33% 0 0); }
+        75% { clip-path: inset(0 0 0 0); }
+      }
+    </style>
+  </div>
+
+  <script>
+    // PRELOADER LOGIC
+    window._loaderStartTime = Date.now();
+    (function(){
+      // We wait for the DOM to be barely ready to grab elements
+      document.addEventListener('DOMContentLoaded', () => {
+          let progress = 0;
+          const bar = document.getElementById('loader-progress');
+          const text = document.getElementById('loader-text');
+          const preloader = document.getElementById('clinic-preloader');
+          if(!bar || !text || !preloader) return;
+          
+          const texts = ["Estableciendo conexión", "Cargando Red Neuronal", "Optimizando entorno"];
+          let textIdx = 0;
+          
+          // Smooth progressive loading bar simulation
+          const interval = setInterval(() => {
+            progress += Math.random() * 12;
+            if (progress > 88) progress = 88;
+            bar.style.width = progress + '%';
+            
+            if (Math.random() > 0.75 && progress < 85 && textIdx < texts.length) {
+              text.innerText = texts[textIdx];
+              textIdx++;
+            }
+          }, 350);
+
+          const hideLoader = () => {
+            clearInterval(interval);
+            bar.style.width = '100%';
+            text.innerText = "Sistema Activo";
+            text.nextElementSibling.style.display = 'none'; // hide dots
+            text.style.color = '#38bdf8';
+            text.style.textShadow = '0 0 10px rgba(56,189,248,0.5)';
+            
+            setTimeout(() => {
+              preloader.style.opacity = '0';
+              preloader.style.transform = 'scale(1.05)';
+              preloader.style.pointerEvents = 'none';
+              
+              setTimeout(() => preloader.remove(), 800);
+            }, 700);
+          };
+
+          window.addEventListener('load', () => {
+            // Guarantee at least 3 seconds of preloader to show the logo video cleanly
+            const now = Date.now();
+            const minTime = window._loaderStartTime + 3000; 
+            const remaining = Math.max(0, minTime - now);
+            setTimeout(hideLoader, remaining);
+          });
+          
+          // Failsafe exit after 8 seconds
+          setTimeout(hideLoader, 8000);
+      });
+    })();
+  </script>
+  <!-- END PRELOADER -->
+
+  <div id="root"></div>
+  <script type="module">
+    import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js'
+
+    Typebot.initBubble({
+      typebot: "agente-web-m-nica-p41iqbp",
+      apiHost: "https://n8n-typebot-viewer.e1bk1a.easypanel.host",
+      previewMessage: {
+        message: "Estoy aquí para responder tus dudas!",
+        autoShowDelay: 3000,
+        avatarUrl:
+          "https://n8n-minio.e1bk1a.easypanel.host/typebot/public/workspaces/cmnn645ob0000p61maeuokjz5/typebots/szgr9vl3iv3o8a6enp41iqbp/hostAvatar?v=1775553878311",
+      },
+      theme: {
+        button: {
+          backgroundColor: "#010B13",
+          customIconSrc:
+            "https://n8n-minio.e1bk1a.easypanel.host/typebot/public/workspaces/cmnn645ob0000p61maeuokjz5/typebots/szgr9vl3iv3o8a6enp41iqbp/bubble-icon?v=1775554619371",
+        },
+        previewMessage: {
+          backgroundColor: "#010B13",
+          textColor: "#F8FAFC",
+          closeButtonBackgroundColor: "#38BDF8",
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>
