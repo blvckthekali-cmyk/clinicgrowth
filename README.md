@@ -9,7 +9,8 @@ Este repositorio contiene el código fuente de la web de **ClinicAI Growth**, un
 - **Integraciones**: Chatbot interactivo (Typebot) integrado.
 
 ## 📁 Estructura del Proyecto
-- `public/`: Contiene los archivos estáticos de la web (HTML, CSS, JS, imágenes).
+- `index.html`: Punto de entrada principal de la web.
+- `assets/`: Recursos estáticos (JS, CSS, imágenes).
 - `scripts/`: Scripts de utilidad para mantenimiento y procesamiento de recursos.
 - `directivas/`: Documentación y guías del proyecto.
 
@@ -18,7 +19,7 @@ Para ver la web en vivo:
 1. Ve a la pestaña **Settings** de este repositorio en GitHub.
 2. Selecciona **Pages** en la barra lateral izquierda.
 3. En **Build and deployment > Source**, asegúrate de que esté seleccionado "Deploy from a branch".
-4. Selecciona la rama `main` y la carpeta `/public`. (Nota: Si la opción de carpeta `/public` no aparece directamente, se recomienda mover el contenido de `public/` a la raíz o usar una GitHub Action para el despliegue).
+4. Selecciona la rama `main` y la carpeta `/(root)`.
 5. Haz clic en **Save**.
 
 ---
